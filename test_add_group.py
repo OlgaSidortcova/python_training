@@ -53,8 +53,6 @@ class TestAddGroup(unittest.TestCase):
         # submit group creation
         wd.find_element_by_name("submit").click()
 
-    #def init_group_creation(self, wd):
-        #wd.find_element_by_name("new").click()
 
     def open_group_page(self, wd):
         wd.find_element_by_link_text("groups").click()
