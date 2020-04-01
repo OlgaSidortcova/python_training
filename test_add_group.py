@@ -1,27 +1,26 @@
 # -*- coding: utf-8 -*-
-import unittest
 
+import pytest
 from group import Group
 from application import Application
 
-class TestAddGroup(unittest.TestCase):
-    def setUp(self):
-        self.app = Application()
 
-    def test_add_group(self):
-        self.app.open_home_page()
-        self.app.login(username="admin", password="secret")
-        self.app.create_group(Group(name="test1", header="test2", footer="test3"))
-        self.app.logout()
+@pytest.fixture
+def app(request):
+    fixture = Application
+    request.addfinalizer(request.destroy)
+    return fixture
 
-    def test_add_empty_group(self):
-        self.app.open_home_page()
-        self.app.login(username="admin", password="secret")
-        self.app.create_group(Group(name="", header="", footer=""))
-        self.app.logout()
 
-    def tearDown(self):
-        self.app.destroy()
+def test_add_group(app):
+    app.open_home_page()
+    app.login(username="admin", password="secret")
+    app.create_group(Group(name="test1", header="test2", footer="test3"))
+    app.logout()
 
-if __name__ == "__main__":
-    unittest.main()
+
+def test_add_empty_group(app):
+    app.open_home_page()
+    app.login(username="admin", password="secret")
+    app.create_group(Group(name="", header="", footer=""))
+    app.logout()
