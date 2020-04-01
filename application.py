@@ -1,6 +1,7 @@
 from selenium import webdriver
 
-class Application():
+
+class Application:
     def __init__(self):
         self.wd = webdriver.Firefox()
         self.wd.implicitly_wait(30)
@@ -9,12 +10,16 @@ class Application():
         wd = self.wd
         wd.find_element_by_link_text("Logout").click()
 
-    def create_group(self, group):
+    def open_groups_page(self):
         wd = self.wd
         wd.find_element_by_link_text("groups").click()
-        #init group creation
+
+    def create_group(self, group):
+        wd = self.wd
+        self.open_groups_page()
+        # init group creation
         wd.find_element_by_name("new").click()
-        #fill group form
+        # fill group form
         wd.find_element_by_name("group_name").click()
         wd.find_element_by_name("group_name").clear()
         wd.find_element_by_name("group_name").send_keys(group.name)
@@ -26,10 +31,15 @@ class Application():
         wd.find_element_by_name("group_footer").send_keys(group.footer)
         # submit group creation
         wd.find_element_by_name("submit").click()
+        self.return_to_group_page()
+
+    def return_to_group_page(self):
+        wd = self.wd
         wd.find_element_by_link_text("group page").click()
 
     def login(self, username, password):
         wd = self.wd
+        self.open_home_page()
         wd.find_element_by_name("user").click()
         wd.find_element_by_name("user").clear()
         wd.find_element_by_name("user").send_keys(username)
