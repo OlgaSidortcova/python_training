@@ -1,12 +1,19 @@
+import time
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+
+
 class SessionHelper:
 
     def __init__(self, app):
         self.app = app
 
-
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
+        wait = WebDriverWait(wd, 5)
+        wait.until(EC.element_to_be_clickable((By.NAME, "user")))
 
     def login(self, username, password):
         wd = self.app.wd
