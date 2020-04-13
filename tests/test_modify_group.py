@@ -13,7 +13,7 @@ def test_modify_first_group(app):
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
     old_groups[0] = group
-    assert old_groups == new_groups
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 
 def test_modify_first_group_name(app):
@@ -26,7 +26,7 @@ def test_modify_first_group_name(app):
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
     old_groups[0] = group
-    assert old_groups == new_groups
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 
 # тест падает, т.к. в группе остаются заполненные поля, которые не меняются. А в подставляемой группе group они None
 def test_modify_first_group_header(app):
@@ -39,5 +39,5 @@ def test_modify_first_group_header(app):
     new_groups = app.group.get_group_list()
     assert len(old_groups) == len(new_groups)
     old_groups[0] = group
-    assert old_groups == new_groups
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
 

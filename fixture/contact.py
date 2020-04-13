@@ -1,6 +1,7 @@
 import time
 from model.contact import Contact
 
+
 class ContactHelper:
     def __init__(self, app):
         self.app = app
@@ -78,8 +79,13 @@ class ContactHelper:
         wd = self.app.wd
         self.open_home_page()
         contacts = []
-        for element in wd.find_elements_by_xpath("(//input[@name='selected[]']/..)"):
-            text = element.find_element_by_name("selected[]").get_attribute("title")
-            id = element.find_element_by_name("selected[]").get_attribute("id")
-            contacts.append(Contact(lastname=str(text), id=id))
+        count = len(wd.find_elements_by_name("selected[]"))
+        for i in range(2, count+2):
+            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]"
+            lastname = wd.find_element_by_xpath(string1).text
+            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]"
+            firstname = wd.find_element_by_xpath(string1).text
+            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[1]/input"
+            id = wd.find_element_by_xpath(string1).get_attribute("value")
+            contacts.append(Contact(lastname=str(lastname), firstname=firstname, id=id))
         return contacts
