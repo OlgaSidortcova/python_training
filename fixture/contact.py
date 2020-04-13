@@ -17,6 +17,7 @@ class ContactHelper:
         self.enter_value(contact)
         wd.find_element_by_xpath("(//input[@name='submit'])[2]").click()
         self.return_to_home_page()
+        self.contact_cache = None
 
     def return_to_home_page(self):
         wd = self.app.wd
@@ -35,6 +36,7 @@ class ContactHelper:
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         time.sleep(1)
+        self.contact_cache = None
 
     def modify_first(self, contact):
         wd = self.app.wd
@@ -44,6 +46,7 @@ class ContactHelper:
         self.enter_value(contact)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home_page()
+        self.contact_cache = None
 
     def select_first(self):
         wd = self.app.wd
@@ -75,17 +78,20 @@ class ContactHelper:
         self.open_home_page()
         return len(wd.find_elements_by_name("selected[]"))
 
+    contact_cache = None
+
     def get_contact_list(self):
-        wd = self.app.wd
-        self.open_home_page()
-        contacts = []
-        count = len(wd.find_elements_by_name("selected[]"))
-        for i in range(2, count+2):
-            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]"
-            lastname = wd.find_element_by_xpath(string1).text
-            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]"
-            firstname = wd.find_element_by_xpath(string1).text
-            string1 = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[1]/input"
-            id = wd.find_element_by_xpath(string1).get_attribute("value")
-            contacts.append(Contact(lastname=str(lastname), firstname=firstname, id=id))
-        return contacts
+        if self.contact_cache is None:
+            wd = self.app.wd
+            self.open_home_page()
+            self.contact_cache = []
+            count = len(wd.find_elements_by_name("selected[]"))
+            for i in range(2, count+2):
+                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]"
+                lastname = wd.find_element_by_xpath(xpath).text
+                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]"
+                firstname = wd.find_element_by_xpath(xpath).text
+                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[1]/input"
+                id = wd.find_element_by_xpath(xpath).get_attribute("value")
+                self.contact_cache.append(Contact(lastname=str(lastname), firstname=firstname, id=id))
+        return list(self.contact_cache)
