@@ -31,13 +31,6 @@ class ContactHelper:
 
     def delete_first(self):
         self.delete_some(0)
-        #wd = self.app.wd
-        #self.open_home_page()
-        #self.select_first()
-        #wd.find_element_by_xpath("//input[@value='Delete']").click()
-        #wd.switch_to_alert().accept()
-        #time.sleep(1)
-        #self.contact_cache = None
 
     def delete_some_contact(self, index):
         wd = self.app.wd
