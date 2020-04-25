@@ -1,6 +1,6 @@
 import time
 from model.contact import Contact
-
+import re
 
 class ContactHelper:
     def __init__(self, app):
@@ -103,13 +103,73 @@ class ContactHelper:
             wd = self.app.wd
             self.open_home_page()
             self.contact_cache = []
-            count = len(wd.find_elements_by_name("selected[]"))
-            for i in range(2, count+2):
-                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]"
-                lastname = wd.find_element_by_xpath(xpath).text
-                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]"
-                firstname = wd.find_element_by_xpath(xpath).text
-                xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[1]/input"
-                id = wd.find_element_by_xpath(xpath).get_attribute("value")
-                self.contact_cache.append(Contact(lastname=str(lastname), firstname=firstname, id=id))
+            for row in wd.find_elements_by_name("entry"):
+                cells = row.find_elements_by_tag_name("td")
+                firstname = cells[2].text
+                lastname = cells[1].text
+                id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+                all_phones = cells[5].text
+                #if (all_phones == []):
+                 #   all_phones = [None, None, None]
+
+                self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id,
+                                                  all_phone_from_home_page=all_phones))
+                                               #   home_phone=all_phones[0],
+                                               #   mobile_phone=all_phones[1], work_phone=all_phones[2]))
+
+            # below is my_way
+            # count = len(wd.find_elements_by_name("selected[]"))
+            # for i in range(2, count+2):
+            #   xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[2]"
+            #  lastname = wd.find_element_by_xpath(xpath).text
+            #  xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[3]"
+            #  firstname = wd.find_element_by_xpath(xpath).text
+            #  xpath = "//table[@id='maintable']/tbody/tr[" + str(i) + "]/td[1]/input"
+            # id = wd.find_element_by_xpath(xpath).get_attribute("value")
+            # self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id))
         return list(self.contact_cache)
+
+    def open_contact_to_edit_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[7]
+        cell.find_element_by_tag_name("a").click()
+
+    def open_contact_view_by_index(self, index):
+        wd = self.app.wd
+        self.app.open_home_page()
+        row = wd.find_elements_by_name("entry")[index]
+        cell = row.find_elements_by_tag_name("td")[6]
+        cell.find_element_by_tag_name("a").click()
+
+    def get_contact_info_from_edit_page(self, index):
+        wd = self.app.wd
+        self.open_contact_to_edit_by_index(index)
+        first_name = wd.find_element_by_name("firstname").get_attribute("value")
+        last_name = wd.find_element_by_name("lastname").get_attribute("value")
+        id = wd.find_element_by_name("id").get_attribute("value")
+        home_phone = wd.find_element_by_name("home").get_attribute("value")
+        work_phone = wd.find_element_by_name("work").get_attribute("value")
+        mobile_phone = wd.find_element_by_name("mobile").get_attribute("value")
+
+        return Contact(firstname=first_name, lastname=last_name, id=id, home_phone=home_phone, work_phone=work_phone,
+                       mobile_phone=mobile_phone)
+
+    def get_contact_from_view_page(self, index):
+        wd = self.app.wd
+        self.open_contact_view_by_index(index)
+        text = wd.find_element_by_id("content").text
+        if re.search("H: (.*)", text) is None:
+            home_phone = None
+        else:
+            home_phone = re.search("H: (.*)", text).group(1)
+        if re.search("W: (.*)", text) is None:
+            work_phone = None
+        else:
+            work_phone = re.search("W: (.*)", text).group(1)
+        if re.search("M: (.*)", text) is None:
+            mobile_phone = None
+        else:
+            mobile_phone = re.search("M: (.*)", text).group(1)
+        return Contact(home_phone=home_phone, work_phone=work_phone, mobile_phone=mobile_phone)
