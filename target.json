@@ -1,0 +1,7 @@
+
+
+{
+  "baseUrl": "http://localhost:8080/addressbook/index.php",
+  "username": "admin",
+  "password": "secret"
+}
