@@ -33,10 +33,19 @@ class ContactHelper:
     def delete_first(self):
         self.delete_some(0)
 
-    def delete_some_contact(self, index):
+    def delete_some_contact_by_id(self, id):
         wd = self.app.wd
         self.open_home_page()
-        self.select_some(index)
+        self.select_some_by_id(id)
+        wd.find_element_by_xpath("//input[@value='Delete']").click()
+        wd.switch_to_alert().accept()
+        time.sleep(1)
+        self.contact_cache = None
+
+    def delete_some_contact_by_index(self, index):
+        wd = self.app.wd
+        self.open_home_page()
+        self.select_some_by_index(index)
         wd.find_element_by_xpath("//input[@value='Delete']").click()
         wd.switch_to_alert().accept()
         time.sleep(1)
@@ -55,7 +64,7 @@ class ContactHelper:
     def modify_some(self, contact, index):
         wd = self.app.wd
         self.open_home_page()
-        self.select_some(index)
+        self.select_some_by_index(index)
         xpath = "//table[@id='maintable']/tbody/tr[" + str(index + 2) + "]/td[8]/a/img"
         wd.find_element_by_xpath(xpath).click()
         self.enter_value(contact)
@@ -67,9 +76,13 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
-    def select_some(self, index):
+    def select_some_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
+
+    def select_some_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[id='%s']" % id).click()
 
     def enter_value(self, contact):
         self.change_field_value("firstname", contact.firstname)
