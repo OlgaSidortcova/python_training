@@ -82,6 +82,8 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
+
+
     def select_first(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
@@ -93,6 +95,24 @@ class ContactHelper:
     def select_some_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[id='%s']" % id).click()
+
+    def get_some_by_id(self, id):
+        wd = self.app.wd
+        wd.find_element_by_css_selector("input[id='%s']" % id)
+        self.open_home_page()
+        row = wd.find_element_by_xpath("//input[@id='%s']/../.." % id)
+        cells = row.find_elements_by_tag_name("td")
+        firstname = cells[2].text
+        lastname = cells[1].text
+        id = cells[0].find_element_by_tag_name("input").get_attribute("value")
+        all_phones = cells[5].text
+        all_emails = cells[4].text
+        contact = Contact(lastname=lastname, firstname=firstname, id=id,
+                                              all_phone_from_home_page=all_phones,
+                                              all_emails_from_home_page=all_emails)
+
+        return contact
+
 
     def enter_value(self, contact):
         self.change_field_value("firstname", contact.firstname)

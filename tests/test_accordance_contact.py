@@ -20,15 +20,21 @@ def test_last_name_on_home_page(app):
     assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_edit_page)
 
 
-def test_phones_on_contact_view_page(app):
-    if app.contact.count() == 0:
+def test_phones_on_contact_view_page(app, db):
+    if len(db.get_contact_list()) == 0:
         app.contact.create(Contact(lastname="test", firstname="first name333", home_phone="1-23",
                      work_phone="+777", email="fd@f.j", email2="b-d353f@b.fd", email3="b_d-f@b.rt"))
-    old_contacts = app.contact.get_contact_list()
-    index = randrange(len(old_contacts))
-    contact_from_view_page = app.contact.get_contact_from_view_page(index)
-    contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
-    assert merge_phones_for_edit_page(contact_from_view_page) == merge_phones_for_edit_page(contact_from_edit_page)
+    contacts = db.get_contact_list()
+    #for contact in contacts:
+    #    index = contacts.index(contact)
+    for index in range(1, len(contacts)):
+        contact = contacts[index]
+        contact_from_view_page = app.contact.get_contact_from_view_page(index)
+        #contact_from_edit_page = app.contact.get_contact_info_from_edit_page(index)
+
+        assert sorted(contact, key=Contact.id_or_max) == sorted(contact_from_view_page, key=Contact.id_or_max)
+
+        #assert merge_phones_for_edit_page(contact_from_view_page) == merge_phones_for_edit_page(contact_from_edit_page)
 
 
 def clear(s):
