@@ -61,12 +61,22 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
-    def modify_some(self, contact, index):
+    def modify_some_by_index(self, contact, index):
         wd = self.app.wd
         self.open_home_page()
         self.select_some_by_index(index)
         xpath = "//table[@id='maintable']/tbody/tr[" + str(index + 2) + "]/td[8]/a/img"
         wd.find_element_by_xpath(xpath).click()
+        self.enter_value(contact)
+        wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
+        self.return_to_home_page()
+        self.contact_cache = None
+
+    def modify_some_by_id(self, contact, id):
+        wd = self.app.wd
+        self.open_home_page()
+        row = wd.find_element_by_xpath("//input[@id='%s']/../.." % id)
+        row.find_elements_by_tag_name("td")[7].click()
         self.enter_value(contact)
         wd.find_element_by_xpath("(//input[@name='update'])[2]").click()
         self.return_to_home_page()
@@ -99,7 +109,6 @@ class ContactHelper:
         self.change_field_value("email", contact.email)
         self.change_field_value("email2", contact.email2)
         self.change_field_value("email3", contact.email3)
-
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
