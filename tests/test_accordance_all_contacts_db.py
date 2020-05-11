@@ -15,29 +15,20 @@ def test_phones_on_contact_view_page(app, db):
         assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(
             contact_from_db)
         assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_db)
-        assert contact_from_home_page.address == contact_from_db.address
+        assert contact_from_home_page.address == contact_from_db.address or (contact_from_home_page.address is None and contact_from_db.address == "")
 
 
 def clear(s):
-    return re.sub("[() -]", "", s)
+    return re.sub("[-() /]", "", s)
 
 
 def merge_phones_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "", map(lambda x: clear(x),
-                    filter(lambda x: x is not None, [contact.home_phone, contact.mobile_phone, contact.work_phone]))))
+                    filter(lambda x: x is not None, [contact.home_phone, contact.mobile_phone, contact.work_phone, contact.phone2]))))
 
 
 def merge_emails_like_on_home_page(contact):
     return "\n".join(filter(lambda x: x != "",
                     filter(lambda x: x is not None, [contact.email, contact.email2, contact.email3])))
 
-
-def merge_address_like_on_home_page(contact):
-    return "\n".join(filter(lambda x: x != "",
-                    filter(lambda x: x is not None, [contact.email, contact.email2, contact.email3])))
-
-
-def merge_phones_for_edit_page(contact):
-    return "\n".join(filter(lambda x: x != "",
-                    filter(lambda x: x is not None, [contact.home_phone, contact.mobile_phone, contact.work_phone])))
 

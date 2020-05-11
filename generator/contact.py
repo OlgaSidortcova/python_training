@@ -35,7 +35,8 @@ def random_phone(maxlen):
 
 
 testdata = [Contact(lastname="", firstname="", email="", home_phone="")] + [
-    Contact(firstname=random_name("Fname", 10), lastname=random_name("Lname", 14), email=random_name("email", 18), home_phone=random_phone(10), email2=random_name("email", 18), work_phone=random_phone(10))
+    Contact(firstname=random_name("Fname", 10), lastname=random_name("Lname", 14), email=random_name("email", 18),
+            home_phone=random_phone(10), email2=random_name("email", 18), work_phone=random_phone(10), phone2=random_phone(10))
     for i in range(n)
 ]
 

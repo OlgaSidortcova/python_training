@@ -129,6 +129,7 @@ class ContactHelper:
         self.change_field_value("email", contact.email)
         self.change_field_value("email2", contact.email2)
         self.change_field_value("email3", contact.email3)
+        self.change_field_value("phone2", contact.phone2)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -193,11 +194,12 @@ class ContactHelper:
         home_phone = wd.find_element_by_name("home").get_attribute("value")
         work_phone = wd.find_element_by_name("work").get_attribute("value")
         mobile_phone = wd.find_element_by_name("mobile").get_attribute("value")
+        phone2 = wd.find_element_by_name("phone2").get_attribute("value")
         email = wd.find_element_by_name("email").get_attribute("value")
         email2 = wd.find_element_by_name("email2").get_attribute("value")
         email3 = wd.find_element_by_name("email3").get_attribute("value")
         return Contact(firstname=first_name, lastname=last_name, id=id, home_phone=home_phone, work_phone=work_phone,
-                       mobile_phone=mobile_phone, email=email, email2=email2, email3=email3)
+                       mobile_phone=mobile_phone, email=email, email2=email2, email3=email3, phone2=phone2)
 
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
@@ -215,4 +217,8 @@ class ContactHelper:
             mobile_phone = None
         else:
             mobile_phone = re.search("M: (.*)", text).group(1)
-        return Contact(home_phone=home_phone, work_phone=work_phone, mobile_phone=mobile_phone)
+        if re.search("P: (.*)", text) is None:
+            phone2 = None
+        else:
+            phone2 = re.search("P: (.*)", text).group(1)
+        return Contact(home_phone=home_phone, work_phone=work_phone, mobile_phone=mobile_phone, phone2=phone2)
