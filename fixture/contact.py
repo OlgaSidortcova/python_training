@@ -1,6 +1,7 @@
 import time
 from model.contact import Contact
 import re
+from selenium.webdriver.support.ui import Select
 
 
 class ContactHelper:
@@ -9,7 +10,9 @@ class ContactHelper:
 
     def open_add_contact_page(self):
         wd = self.app.wd
-        if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
+        f1 = wd.current_url.endswith("/group.php")
+        f2 = len(wd.find_elements_by_name("new")) > 0
+        if not wd.current_url.endswith("/edit.php"):
             wd.find_element_by_link_text("add new").click()
 
     def create(self, contact):
@@ -82,8 +85,6 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
-
-
     def select_first(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
@@ -130,6 +131,7 @@ class ContactHelper:
         self.change_field_value("email2", contact.email2)
         self.change_field_value("email3", contact.email3)
         self.change_field_value("phone2", contact.phone2)
+        self.select_group(contact.group)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -137,6 +139,12 @@ class ContactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
+
+    def select_group(self, group):
+        wd = self.app.wd
+        if group is not None:
+            Select(wd.find_element_by_name("new_group")).select_by_visible_text(group)
+
 
     def count(self):
         wd = self.app.wd
