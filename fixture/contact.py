@@ -10,8 +10,6 @@ class ContactHelper:
 
     def open_add_contact_page(self):
         wd = self.app.wd
-        f1 = wd.current_url.endswith("/group.php")
-        f2 = len(wd.find_elements_by_name("new")) > 0
         if not wd.current_url.endswith("/edit.php"):
             wd.find_element_by_link_text("add new").click()
 
@@ -114,7 +112,6 @@ class ContactHelper:
 
         return contact
 
-
     def enter_value(self, contact):
         self.change_field_value("firstname", contact.firstname)
         self.change_field_value("middlename", contact.middlename)
@@ -144,7 +141,6 @@ class ContactHelper:
         wd = self.app.wd
         if group is not None:
             Select(wd.find_element_by_name("new_group")).select_by_visible_text(group)
-
 
     def count(self):
         wd = self.app.wd

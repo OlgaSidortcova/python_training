@@ -6,7 +6,7 @@ from fixture.orm import ORMFixture
 orm = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
 
-def test_del_contact_from(app, db):
+def test_del_contact_from_group(app, db):
     group_list_with_contacts = db.get_group_list_with_contacts()
     if len(group_list_with_contacts) != 0:
         group = group_list_with_contacts[0]
