@@ -128,7 +128,6 @@ class ContactHelper:
         self.change_field_value("email2", contact.email2)
         self.change_field_value("email3", contact.email3)
         self.change_field_value("phone2", contact.phone2)
-        self.select_group(contact.group)
 
     def change_field_value(self, field_name, text):
         wd = self.app.wd
@@ -136,11 +135,6 @@ class ContactHelper:
             wd.find_element_by_name(field_name).click()
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
-
-    def select_group(self, group):
-        wd = self.app.wd
-        if group is not None:
-            Select(wd.find_element_by_name("new_group")).select_by_visible_text(group)
 
     def count(self):
         wd = self.app.wd
@@ -226,3 +220,19 @@ class ContactHelper:
         else:
             phone2 = re.search("P: (.*)", text).group(1)
         return Contact(home_phone=home_phone, work_phone=work_phone, mobile_phone=mobile_phone, phone2=phone2)
+
+    def add_in_group(self, contact, group):
+        wd = self.app.wd
+        self.app.open_home_page()
+        self.select_some_by_id(contact.id)
+        Select(wd.find_element_by_name("to_group")).select_by_visible_text(group.name)
+        wd.find_element_by_name("add").click()
+        self.open_home_page()
+
+    def del_from_group(self, contact, group):
+        wd = self.app.wd
+        self.app.open_home_page()
+        Select(wd.find_element_by_name("group")).select_by_visible_text(group.name)
+        self.select_some_by_id(contact.id)
+        wd.find_element_by_name("remove").click()
+        self.open_home_page()

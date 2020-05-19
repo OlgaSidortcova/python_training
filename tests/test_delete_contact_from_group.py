@@ -1,49 +1,42 @@
 from model.contact import Contact
 from model.group import Group
-import random
 from fixture.orm import ORMFixture
 
 orm = ORMFixture(host="127.0.0.1", name="addressbook", user="root", password="")
 
 
 def test_del_contact_from_group(app, db):
-    group_list_with_contacts = db.get_group_list_with_contacts()
-    if len(group_list_with_contacts) != 0:
-        group = group_list_with_contacts[0]
-        contacts = orm.get_contacts_in_group(group)
-        contact = random.choice(contacts)
+    groups = db.get_group_list()
+    target_contact = None
+    if len(db.get_contact_list()) == 0:
+        contact = Contact(firstname="FirstnamejujUFirstname", lastname="LastnamehixLastname",
+                          email="emailcgxPJLtRS MHsUDemail", home_phone="529")
+        app.contact.create(contact)
 
-    elif len(db.get_group_list()) == 0:
-        group = create_group(app, db)
-        contact = create_contact(app, group)
-
+    if len(groups) == 0:
+        group = Group(name="888", header='8888', footer='88888')
+        app.group.create(group)
+        #target_group = db.get_group_list()[0]
     else:
-        groups = orm.get_group_list()
-        group = random.choice(groups)
-        contact = create_contact(app, group)
-
-    old_contacts = db.get_contact_list()
-    l_before = orm.get_contacts_in_group(Group(id=group.id))
-
-    app.contact.delete_some_contact_by_id(contact.id)
-    old_contacts.remove(contact)
-
-    new_contacts = db.get_contact_list()
-    l_after = orm.get_contacts_in_group(Group(id=group.id))
-    assert len(l_before) == len(l_after) + 1
-    assert sorted(old_contacts, key=Contact.id_or_max) == sorted(new_contacts, key=Contact.id_or_max)
+        groups_with_contacts = db.get_group_list_with_contacts()
+        if len(groups_with_contacts) != 0:
+            target_group = db.get_group_by_id(groups_with_contacts[0])
+            target_contact = orm.get_contacts_in_group(target_group)[0]
 
 
-def create_contact(app, group):
-    contact = Contact(lastname="qqqq", firstname='bbb', address='ccccc', group=group.name)
-    app.contact.create(contact)
-    contacts = orm.get_contacts_in_group(group)
-    contact = contacts[0]
-    return contact
+       # for group in groups:
+        #    contacts = orm.get_contacts_in_group(Group(id=group.id))
+         #   if len(contacts) != 0:
+          #      target_contact = contacts[0]
+           #     target_group = group
+    i = 0
+    if target_contact is None:
+        target_contact = db.get_contact_list()[0]
+        target_group = db.get_group_list()[0]
+        app.contact.add_in_group(target_contact, target_group)
 
-
-def create_group(app, db):
-    group = Group(name="888", header='8888', footer='88888')
-    app.group.create(group)
-    group = db.get_group_list()[0]
-    return group
+    old_groups = orm.get_groups_for_contact(Contact(id=target_contact.id))
+    app.contact.del_from_group(target_contact, target_group)
+    new_groups = orm.get_groups_for_contact(Contact(id=target_contact.id))
+    new_groups.append(target_group)
+    assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
