@@ -14,11 +14,6 @@ def test_add_contact_in_group(app, db):
         app.group.create(group)
         target_group = db.get_group_list()[0]
     else:
-        #groups_with_contacts = db.get_group_list_with_contacts()
-        groups_with_contacts = db.get_group_list_with_contacts()
-        if len(groups_with_contacts) != 0:
-            target_group = db.get_group_by_id(groups_with_contacts[0])
-            target_contact = orm.get_contacts_in_group(target_group)[0]
 
         for group in groups:
             contacts = orm.get_contacts_not_in_group(Group(id=group.id))
