@@ -12,24 +12,16 @@ def test_del_contact_from_group(app, db):
         contact = Contact(firstname="FirstnamejujUFirstname", lastname="LastnamehixLastname",
                           email="emailcgxPJLtRS MHsUDemail", home_phone="529")
         app.contact.create(contact)
-
     if len(groups) == 0:
         group = Group(name="888", header='8888', footer='88888')
         app.group.create(group)
-        #target_group = db.get_group_list()[0]
+
     else:
         groups_with_contacts = db.get_group_list_with_contacts()
         if len(groups_with_contacts) != 0:
             target_group = db.get_group_by_id(groups_with_contacts[0])
             target_contact = orm.get_contacts_in_group(target_group)[0]
 
-
-       # for group in groups:
-        #    contacts = orm.get_contacts_in_group(Group(id=group.id))
-         #   if len(contacts) != 0:
-          #      target_contact = contacts[0]
-           #     target_group = group
-    i = 0
     if target_contact is None:
         target_contact = db.get_contact_list()[0]
         target_group = db.get_group_list()[0]
