@@ -2,7 +2,9 @@ from pony.orm import *
 from datetime import datetime
 from model.contact import Contact
 from model.group import Group
+import mysql.connector
 from pymysql.converters import decoders
+
 
 class ORMFixture:
     db = Database()
@@ -42,33 +44,38 @@ class ORMFixture:
 
         return list(map(convert, contacts))
 
-    @db_session
+    #@db_session
     def get_group_list(self):
-        return self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup))
+        with db_session:
+         return self.convert_groups_to_model(select(g for g in ORMFixture.ORMGroup))
 
-    @db_session
+    #@db_session
     def get_contact_list(self):
-        return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None))
+        with db_session:
+            return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None))
 
-    @db_session
+    #@db_session
     def get_contacts_in_group(self, group):
-        contacts = []
-        try:
-            orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
-            contacts = self.convert_contacts_to_model(orm_group.contacts)
-        finally:
-            return contacts
+        with db_session:
+            contacts = []
+            try:
+                orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
+                contacts = self.convert_contacts_to_model(orm_group.contacts)
+            finally:
+                return contacts
 
-    @db_session
+    #@db_session
     def get_contacts_not_in_group(self, group):
-        orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
-        return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
+        with db_session:
+            orm_group = list(select(g for g in ORMFixture.ORMGroup if g.id == group.id))[0]
+            return self.convert_contacts_to_model(select(c for c in ORMFixture.ORMContact if c.deprecated is None and orm_group not in c.groups))
 
-    @db_session
+    #@db_session
     def get_groups_for_contact(self, contact):
-        groups = []
-        try:
-            orm_contact = list(select(g for g in ORMFixture.ORMContact if g.id == contact.id))[0]
-            groups = self.convert_groups_to_model(orm_contact.groups)
-        finally:
-            return groups
+        with db_session:
+            groups = []
+            try:
+                orm_contact = list(select(g for g in ORMFixture.ORMContact if g.id == contact.id))[0]
+                groups = self.convert_groups_to_model(orm_contact.groups)
+            finally:
+                return groups

@@ -17,7 +17,7 @@ def add_new_group(app, new_group):
 
 
 @then('the new group list is equal to the old list with the added group')
-def verify_group_added(db, group_list):
+def verify_group_added(db, group_list, new_group):
     old_groups = group_list
     new_groups = db.get_group_list()
     old_groups.append(new_group)
@@ -36,7 +36,7 @@ def random_group(non_empty_group_list):
 
 @when('I delete the group from the list')
 def delete_group(app, random_group):
-    app.group.delete_group_by_id(random_group)
+    app.group.delete_group_by_id(random_group.id)
 
 @then('the new group list is equal to the old list without the delete group')
 def verify_group_deleted(db, non_empty_group_list, random_group, app, check_ui):
