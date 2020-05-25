@@ -1,0 +1,217 @@
+Вывод на консоль
+Started by user admin
+Running as SYSTEM
+Building in workspace /Users/macbookair/.jenkins/workspace/addressbook
+No credentials specified
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/OlgaSidortcova/python_training # timeout=10
+Fetching upstream changes from https://github.com/OlgaSidortcova/python_training
+ > git --version # timeout=10
+ > git fetch --tags --force --progress -- https://github.com/OlgaSidortcova/python_training +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 4a2e2c9227f8e0ffa369a6fe95e29e1117452c95 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 4a2e2c9227f8e0ffa369a6fe95e29e1117452c95 # timeout=10
+Commit message: "Тесты с orm объединила в один файл, чтобы не запускать 2 раза БД и не вызывать ошибок"
+ > git rev-list --no-walk 0fe2e2bd61a6ab67ae61db623cdec46d497ecfb0 # timeout=10
+[addressbook] $ /bin/sh -xe /var/folders/24/m4cfj0f14_q1zc06v12rc4_m0000gn/T/shiningpanda644832594046524248.sh
++ pip3 install -r requirements.txt
+Requirement already satisfied: pytest in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 1)) (5.4.2)
+Requirement already satisfied: pytest_bdd in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 2)) (3.3.0)
+Requirement already satisfied: selenium in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 3)) (3.141.0)
+Requirement already satisfied: jsonpickle in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 4)) (1.4.1)
+Requirement already satisfied: pony in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 5)) (0.7.13)
+Requirement already satisfied: pymysql in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 6)) (0.9.3)
+Requirement already satisfied: mysql-connector-python-rf in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 7)) (2.2.2)
+Requirement already satisfied: allure-pytest in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from -r requirements.txt (line 8)) (2.8.15)
+Requirement already satisfied: more-itertools>=4.0.0 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (8.3.0)
+Requirement already satisfied: attrs>=17.4.0 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (19.3.0)
+Requirement already satisfied: pluggy<1.0,>=0.12 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (0.13.1)
+Requirement already satisfied: py>=1.5.0 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (1.8.1)
+Requirement already satisfied: wcwidth in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (0.1.9)
+Requirement already satisfied: packaging in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest->-r requirements.txt (line 1)) (20.4)
+Requirement already satisfied: six>=1.9.0 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest_bdd->-r requirements.txt (line 2)) (1.15.0)
+Requirement already satisfied: parse-type in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest_bdd->-r requirements.txt (line 2)) (0.5.2)
+Requirement already satisfied: Mako in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest_bdd->-r requirements.txt (line 2)) (1.1.2)
+Requirement already satisfied: parse in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest_bdd->-r requirements.txt (line 2)) (1.15.0)
+Requirement already satisfied: glob2 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from pytest_bdd->-r requirements.txt (line 2)) (0.7)
+Requirement already satisfied: urllib3 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from selenium->-r requirements.txt (line 3)) (1.25.9)
+Requirement already satisfied: importlib-metadata in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from jsonpickle->-r requirements.txt (line 4)) (1.6.0)
+Requirement already satisfied: allure-python-commons==2.8.15 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from allure-pytest->-r requirements.txt (line 8)) (2.8.15)
+Requirement already satisfied: pyparsing>=2.0.2 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from packaging->pytest->-r requirements.txt (line 1)) (2.4.7)
+Requirement already satisfied: MarkupSafe>=0.9.2 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from Mako->pytest_bdd->-r requirements.txt (line 2)) (1.1.1)
+Requirement already satisfied: zipp>=0.5 in /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages (from importlib-metadata->jsonpickle->-r requirements.txt (line 4)) (3.1.0)
++ py.test --junitxml=results.xml tests/__init__.py tests/test_accordance_all_contacts_db.py tests/test_accordance_contact.py tests/test_add_contact.py tests/test_add_group.py tests/test_contact_with_group.py tests/test_db_matches_ui.py tests/test_del_contact.py tests/test_del_group.py tests/test_modify_contact.py tests/test_modify_group.py
+============================= test session starts ==============================
+platform darwin -- Python 3.8.3, pytest-5.4.2, py-1.8.1, pluggy-0.13.1
+rootdir: /Users/macbookair/.jenkins/workspace/addressbook
+plugins: allure-pytest-2.8.15, bdd-3.3.0
+collected 26 items
+
+tests/test_accordance_all_contacts_db.py FF                              [  3%]
+tests/test_accordance_contact.py ..                                      [ 11%]
+tests/test_add_contact.py .......                                        [ 38%]
+tests/test_add_group.py ......                                           [ 61%]
+tests/test_contact_with_group.py .F                                      [ 69%]
+tests/test_db_matches_ui.py F                                            [ 73%]
+tests/test_del_contact.py .                                              [ 76%]
+tests/test_del_group.py .                                                [ 80%]
+tests/test_modify_contact.py .                                           [ 84%]
+tests/test_modify_group.py ..F
+
+=================================== FAILURES ===================================
+_______________________ test_phones_on_contact_view_page _______________________
+
+app = <fixture.application.Application object at 0x10c3beee0>
+db = <fixture.db.DbFixture object at 0x10c3bec10>
+
+    def test_phones_on_contact_view_page(app, db):
+        if len(db.get_contact_list()) == 0:
+            app.contact.create(Contact(lastname="test", firstname="first name333", home_phone="1-23",
+                         work_phone="+777", email="fd@f.j", email2="b-d353f@b.fd", email3="b_d-f@b.rt"))
+        contacts = db.get_contact_list()
+        for contact_from_db in contacts:
+            id = contact_from_db.id
+            contact_from_home_page = app.contact.get_some_by_id(id)
+            assert contact_from_db == contact_from_home_page
+            assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(
+                contact_from_db)
+>           assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_db)
+E           AssertionError: assert '7\nmobilepho...e333\n+065$%$' == '7\nmobilepho...333\n00065$%$'
+E               7
+E               mobilephone333
+E               workphone333
+E             - 00065$%$
+E             ? ^^
+E             + +065$%$
+E             ? ^
+
+tests/test_accordance_all_contacts_db.py:17: AssertionError
+_______________________ test_phones_on_contact_view_page _______________________
+
+app = <fixture.application.Application object at 0x10c3beee0>
+db = <fixture.db.DbFixture object at 0x10c3bec10>
+
+    def test_phones_on_contact_view_page(app, db):
+        if len(db.get_contact_list()) == 0:
+            app.contact.create(Contact(lastname="test", firstname="first name333", home_phone="1-23",
+                         work_phone="+777", email="fd@f.j", email2="b-d353f@b.fd", email3="b_d-f@b.rt"))
+        contacts = db.get_contact_list()
+        for contact_from_db in contacts:
+            id = contact_from_db.id
+            contact_from_home_page = app.contact.get_some_by_id(id)
+            assert contact_from_db == contact_from_home_page
+            assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(
+                contact_from_db)
+>           assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_db)
+E           AssertionError: assert '7\nmobilepho...e333\n+065$%$' == '7\nmobilepho...333\n00065$%$'
+E               7
+E               mobilephone333
+E               workphone333
+E             - 00065$%$
+E             ? ^^
+E             + +065$%$
+E             ? ^
+
+tests/test_accordance_all_contacts_db.py:17: AssertionError
+__________________________ test_add_contact_in_group ___________________________
+
+app = <fixture.application.Application object at 0x10c3beee0>
+
+    def test_add_contact_in_group(app):
+        groups = orm.get_group_list()
+        target_contact = None
+        target_group = None
+        if len(groups) == 0:
+            group = Group(name="888", header='8888', footer='88888')
+            app.group.create(group)
+            target_group = orm.get_group_list()[0]
+        else:
+    
+            for group in groups:
+                contacts = orm.get_contacts_not_in_group(Group(id=group.id))
+                if len(contacts) != 0:
+                    target_contact = contacts[0]
+                    target_group = group
+    
+        if target_contact is None:
+            contact = Contact(firstname="FirstnamejujUFirstname", lastname="LastnamehixLastname",
+                              email="emailcgxPJLtRS MHsUDemail", home_phone="529")
+            app.contact.create(contact)
+            target_contact = sorted(orm.get_contact_list(), key=Contact.id_or_max)[len(orm.get_contact_list()) - 1]
+            target_group = orm.get_group_list()[0]
+    
+        old_groups = orm.get_groups_for_contact(Contact(id=target_contact.id))
+        app.contact.add_in_group(target_contact, target_group)
+        new_groups = orm.get_groups_for_contact(Contact(id=target_contact.id))
+        i=0
+>       new_groups.remove(target_group)
+E       ValueError: list.remove(x): x not in list
+
+tests/test_contact_with_group.py:66: ValueError
+_______________________________ test_group_list ________________________________
+
+app = <fixture.application.Application object at 0x10c3beee0>
+db = <fixture.db.DbFixture object at 0x10c3bec10>
+
+    def test_group_list(app, db):
+        #ui_list = app.group.get_group_list()
+        print(timeit(lambda: app.group.get_group_list(), number=1))
+    
+        def clean(group):
+            return Group(id=group.id, name=group.name.strip())
+    
+        #db_list = map(clean, db.get_group_list())
+        print(timeit(lambda: map(clean, db.get_group_list()), number=1000))
+    
+>       assert False#sorted(ui_list, key=Group.id_or_max) == sorted(db_list, key=Group.id_or_max)
+E       assert False
+
+tests/test_db_matches_ui.py:14: AssertionError
+----------------------------- Captured stdout call -----------------------------
+1.4906870880000014
+2.0121798549999994
+________________________ test_modify_first_group_header ________________________
+
+app = <fixture.application.Application object at 0x10c3beee0>
+
+    def test_modify_first_group_header(app):
+        if app.group.count() == 0:
+            app.group.create(Group(name="test"))
+        old_groups = app.group.get_group_list()
+        index = randrange(len(old_groups))
+        group = Group(header="New header")
+        group.id = old_groups[index].id
+        app.group.modify_group_by_index(group, index)
+        assert len(old_groups) == app.group.count()
+        new_groups = app.group.get_group_list()
+        old_groups[index] = group
+>       assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)
+E       assert [356:None:New...one:None, ...] == [356:name1:No...one:None, ...]
+E         At index 0 diff: 356:None:New header:None != 356:name1:None:None
+E         Use -v to get the full diff
+
+tests/test_modify_group.py:48: AssertionError
+=============================== warnings summary ===============================
+/Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages/_pytest/junitxml.py:417
+  /Users/macbookair/.jenkins/shiningpanda/jobs/bcdd1c5e/virtualenvs/d41d8cd9/lib/python3.8/site-packages/_pytest/junitxml.py:417: PytestDeprecationWarning: The 'junit_family' default value will change to 'xunit2' in pytest 6.0.
+  Add 'junit_family=xunit1' to your pytest.ini file to keep the current format in future versions of pytest and silence this warning.
+    _issue_warning_captured(deprecated.JUNIT_XML_DEFAULT_FAMILY, config.hook, 2)
+
+tests/test_del_contact.py::test_delete_some_contact
+  /Users/macbookair/.jenkins/workspace/addressbook/fixture/contact.py:42: DeprecationWarning: use driver.switch_to.alert instead
+    wd.switch_to_alert().accept()
+
+-- Docs: https://docs.pytest.org/en/latest/warnings.html
+- generated xml file: /Users/macbookair/.jenkins/workspace/addressbook/results.xml -
+=========================== short test summary info ============================
+FAILED tests/test_accordance_all_contacts_db.py::test_phones_on_contact_view_page
+FAILED tests/test_accordance_all_contacts_db.py::test_phones_on_contact_view_page
+FAILED tests/test_contact_with_group.py::test_add_contact_in_group - ValueErr...
+FAILED tests/test_db_matches_ui.py::test_group_list - assert False
+FAILED tests/test_modify_group.py::test_modify_first_group_header - assert [3...
+============= 5 failed, 21 passed, 2 warnings in 96.89s (0:01:36) ==============
+Build step 'Virtualenv Builder' marked build as failure
+Finished: FAILURE
