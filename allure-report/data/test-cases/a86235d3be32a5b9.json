@@ -1,0 +1,192 @@
+{
+  "uid" : "a86235d3be32a5b9",
+  "name" : "test_add_contact[None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:]",
+  "fullName" : "tests.test_add_contact#test_add_contact",
+  "historyId" : "27f254d1158b190b1e24131666985484",
+  "time" : {
+    "start" : 1590578705738,
+    "stop" : 1590578708310,
+    "duration" : 2572
+  },
+  "status" : "passed",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "stop",
+    "time" : {
+      "start" : 1590578535586,
+      "stop" : 1590578535586,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "check_ui",
+    "time" : {
+      "start" : 1590578705737,
+      "stop" : 1590578705737,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1590578704975,
+      "stop" : 1590578705737,
+      "duration" : 762
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "db",
+    "time" : {
+      "start" : 1590578535586,
+      "stop" : 1590578535649,
+      "duration" : 63
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "passed",
+    "steps" : [ {
+      "name" : "I add a contact: \"None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:\" to the list",
+      "time" : {
+        "start" : 1590578705743,
+        "stop" : 1590578708301,
+        "duration" : 2558
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "I enter a contact: \"None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:\"",
+        "time" : {
+          "start" : 1590578705908,
+          "stop" : 1590578707764,
+          "duration" : 1856
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "contact",
+          "value" : "None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "contact",
+        "value" : "None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:"
+      } ],
+      "stepsCount" : 1,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 2,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1590578792428,
+      "stop" : 1590578793037,
+      "duration" : 609
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1590578793038,
+      "stop" : 1590578793038,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_add_contact"
+  }, {
+    "name" : "host",
+    "value" : "osido.local"
+  }, {
+    "name" : "thread",
+    "value" : "61794-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_add_contact"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ {
+    "name" : "json_contacts",
+    "value" : "None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:"
+  } ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "a86235d3be32a5b9.json",
+  "parameterValues" : [ "None:LnameuMRwCPcr:FnameLvkYy:emailPNFQAjvlYRvlEb:" ]
+}

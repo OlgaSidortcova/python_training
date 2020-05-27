@@ -2,7 +2,7 @@ import time
 from model.contact import Contact
 import re
 from selenium.webdriver.support.ui import Select
-
+import allure
 
 class ContactHelper:
     def __init__(self, app):
@@ -13,6 +13,7 @@ class ContactHelper:
         if not wd.current_url.endswith("/edit.php"):
             wd.find_element_by_link_text("add new").click()
 
+    @allure.step('I add a contact: "{contact}" to the list')
     def create(self, contact):
         wd = self.app.wd
         self.open_add_contact_page()
@@ -31,9 +32,11 @@ class ContactHelper:
                 wd.find_elements_by_xpath("//input[@value='Delete']")) > 0):
             wd.find_element_by_link_text("home").click()
 
+    @allure.step('I delete a first contact')
     def delete_first(self):
         self.delete_some(0)
 
+    @allure.step('I delete a contact with id: "{id}"')
     def delete_some_contact_by_id(self, id):
         wd = self.app.wd
         self.open_home_page()
@@ -43,6 +46,7 @@ class ContactHelper:
         time.sleep(1)
         self.contact_cache = None
 
+    @allure.step('I delete a contact with index: "{index}"')
     def delete_some_contact_by_index(self, index):
         wd = self.app.wd
         self.open_home_page()
@@ -52,6 +56,7 @@ class ContactHelper:
         time.sleep(1)
         self.contact_cache = None
 
+    @allure.step('I modify a contact: "{contact}"')
     def modify_first(self, contact):
         wd = self.app.wd
         self.open_home_page()
@@ -62,6 +67,7 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
+    @allure.step('I modify a contact with index: "{index}"')
     def modify_some_by_index(self, contact, index):
         wd = self.app.wd
         self.open_home_page()
@@ -73,6 +79,7 @@ class ContactHelper:
         self.return_to_home_page()
         self.contact_cache = None
 
+    @allure.step('I modify a contact with id: "{id}"')
     def modify_some_by_id(self, contact, id):
         wd = self.app.wd
         self.open_home_page()
@@ -87,14 +94,17 @@ class ContactHelper:
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
+    @allure.step('I select a contact with index: "{index}"')
     def select_some_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
+    @allure.step('I select a contact with id: "{id}"')
     def select_some_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[id='%s']" % id).click()
 
+    @allure.step('I get a contact with id: "{id}"')
     def get_some_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[id='%s']" % id)
@@ -112,6 +122,7 @@ class ContactHelper:
 
         return contact
 
+    @allure.step('I enter a contact: "{contact}"')
     def enter_value(self, contact):
         self.change_field_value("firstname", contact.firstname)
         self.change_field_value("middlename", contact.middlename)
@@ -136,6 +147,7 @@ class ContactHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
+    @allure.step('I calculate contact count')
     def count(self):
         wd = self.app.wd
         self.open_home_page()
@@ -143,6 +155,7 @@ class ContactHelper:
 
     contact_cache = None
 
+    @allure.step('I get a contact list')
     def get_contact_list(self):
         if self.contact_cache is None:
             wd = self.app.wd
@@ -169,6 +182,7 @@ class ContactHelper:
             # self.contact_cache.append(Contact(lastname=lastname, firstname=firstname, id=id))
         return list(self.contact_cache)
 
+    @allure.step('I open a contact to edit by index: "{index}"')
     def open_contact_to_edit_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
@@ -176,6 +190,7 @@ class ContactHelper:
         cell = row.find_elements_by_tag_name("td")[7]
         cell.find_element_by_tag_name("a").click()
 
+    @allure.step('I open a contact to view by index: "{index}"')
     def open_contact_view_by_index(self, index):
         wd = self.app.wd
         self.app.open_home_page()
@@ -183,6 +198,7 @@ class ContactHelper:
         cell = row.find_elements_by_tag_name("td")[6]
         cell.find_element_by_tag_name("a").click()
 
+    @allure.step('I get a contact info from edit page by index: "{index}"')
     def get_contact_info_from_edit_page(self, index):
         wd = self.app.wd
         self.open_contact_to_edit_by_index(index)
@@ -199,6 +215,7 @@ class ContactHelper:
         return Contact(firstname=first_name, lastname=last_name, id=id, home_phone=home_phone, work_phone=work_phone,
                        mobile_phone=mobile_phone, email=email, email2=email2, email3=email3, phone2=phone2)
 
+    @allure.step('I get a contact info from view page by index: "{index}"')
     def get_contact_from_view_page(self, index):
         wd = self.app.wd
         self.open_contact_view_by_index(index)
@@ -221,6 +238,7 @@ class ContactHelper:
             phone2 = re.search("P: (.*)", text).group(1)
         return Contact(home_phone=home_phone, work_phone=work_phone, mobile_phone=mobile_phone, phone2=phone2)
 
+    @allure.step('I add a contact: "{contact}" to a group: "{group}"')
     def add_in_group(self, contact, group):
         wd = self.app.wd
         self.app.open_home_page()
@@ -229,6 +247,7 @@ class ContactHelper:
         wd.find_element_by_name("add").click()
         self.open_home_page()
 
+    @allure.step('I del a contact: "{contact}" from a group: "{group}"')
     def del_from_group(self, contact, group):
         wd = self.app.wd
         self.app.open_home_page()

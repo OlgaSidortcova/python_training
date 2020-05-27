@@ -1,0 +1,60 @@
+{
+  "uid" : "4b4757e66a1912dae1a509f688f20b0f",
+  "name" : "categories",
+  "children" : [ {
+    "name" : "Product defects",
+    "children" : [ {
+      "name" : "AssertionError: assert '7\\nmobilepho...e333\\n+065$%$' == '7\\nmobilepho...333\\n00065$%$'\n    7\n    mobilephone333\n    workphone333\n  - 00065$%$\n  ? ^^\n  + +065$%$\n  ? ^",
+      "children" : [ {
+        "name" : "test_phones_on_contact_view_page",
+        "uid" : "2bfb089af01275b6",
+        "parentUid" : "82280d85458c39249a217a45804f13b0",
+        "status" : "failed",
+        "time" : {
+          "start" : 1590578553279,
+          "stop" : 1590578553858,
+          "duration" : 579
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "82280d85458c39249a217a45804f13b0"
+    }, {
+      "name" : "AssertionError: assert False",
+      "children" : [ {
+        "name" : "test_group_list",
+        "uid" : "2a6666d64bf879e1",
+        "parentUid" : "8d89788b03808d3beec6ddf8e7d75f3d",
+        "status" : "failed",
+        "time" : {
+          "start" : 1590578749595,
+          "stop" : 1590578759072,
+          "duration" : 9477
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "8d89788b03808d3beec6ddf8e7d75f3d"
+    }, {
+      "name" : "AssertionError: assert [356:name1:No...one:None, ...] == [356:name1:No...one:None, ...]\n  At index 24 diff: 386:None:New header:None != 386:NameCAGrpJzN:None:None\n  Use -v to get the full diff",
+      "children" : [ {
+        "name" : "test_modify_first_group_header",
+        "uid" : "6553fd92fffdf0d2",
+        "parentUid" : "ca61fe83139e1e400efc5c51923fd4d7",
+        "status" : "failed",
+        "time" : {
+          "start" : 1590578782819,
+          "stop" : 1590578792405,
+          "duration" : 9586
+        },
+        "flaky" : false,
+        "newFailed" : false,
+        "parameters" : [ ]
+      } ],
+      "uid" : "ca61fe83139e1e400efc5c51923fd4d7"
+    } ],
+    "uid" : "8fb3a91ba5aaf9de24cc8a92edc82b5d"
+  } ]
+}

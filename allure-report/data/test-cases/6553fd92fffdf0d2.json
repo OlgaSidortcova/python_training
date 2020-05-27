@@ -1,0 +1,203 @@
+{
+  "uid" : "6553fd92fffdf0d2",
+  "name" : "test_modify_first_group_header",
+  "fullName" : "tests.test_modify_group#test_modify_first_group_header",
+  "historyId" : "8b27f2f8aa979cfd42970718c8f66a35",
+  "time" : {
+    "start" : 1590578782819,
+    "stop" : 1590578792405,
+    "duration" : 9586
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert [356:name1:No...one:None, ...] == [356:name1:No...one:None, ...]\n  At index 24 diff: 386:None:New header:None != 386:NameCAGrpJzN:None:None\n  Use -v to get the full diff",
+  "statusTrace" : "app = <fixture.application.Application object at 0x1081ccda0>\n\n    def test_modify_first_group_header(app):\n        if app.group.count() == 0:\n            app.group.create(Group(name=\"test\"))\n        old_groups = app.group.get_group_list()\n        index = randrange(len(old_groups))\n        group = Group(header=\"New header\")\n        group.id = old_groups[index].id\n        app.group.modify_group_by_index(group, index)\n        assert len(old_groups) == app.group.count()\n        new_groups = app.group.get_group_list()\n        old_groups[index] = group\n>       assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)\nE       assert [356:name1:No...one:None, ...] == [356:name1:No...one:None, ...]\nE         At index 24 diff: 386:None:New header:None != 386:NameCAGrpJzN:None:None\nE         Use -v to get the full diff\n\ntests/test_modify_group.py:48: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "stop",
+    "time" : {
+      "start" : 1590578535586,
+      "stop" : 1590578535586,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "app",
+    "time" : {
+      "start" : 1590578782768,
+      "stop" : 1590578782819,
+      "duration" : 51
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert [356:name1:No...one:None, ...] == [356:name1:No...one:None, ...]\n  At index 24 diff: 386:None:New header:None != 386:NameCAGrpJzN:None:None\n  Use -v to get the full diff",
+    "statusTrace" : "app = <fixture.application.Application object at 0x1081ccda0>\n\n    def test_modify_first_group_header(app):\n        if app.group.count() == 0:\n            app.group.create(Group(name=\"test\"))\n        old_groups = app.group.get_group_list()\n        index = randrange(len(old_groups))\n        group = Group(header=\"New header\")\n        group.id = old_groups[index].id\n        app.group.modify_group_by_index(group, index)\n        assert len(old_groups) == app.group.count()\n        new_groups = app.group.get_group_list()\n        old_groups[index] = group\n>       assert sorted(old_groups, key=Group.id_or_max) == sorted(new_groups, key=Group.id_or_max)\nE       assert [356:name1:No...one:None, ...] == [356:name1:No...one:None, ...]\nE         At index 24 diff: 386:None:New header:None != 386:NameCAGrpJzN:None:None\nE         Use -v to get the full diff\n\ntests/test_modify_group.py:48: AssertionError",
+    "steps" : [ {
+      "name" : "I calculate the group count",
+      "time" : {
+        "start" : 1590578782820,
+        "stop" : 1590578783938,
+        "duration" : 1118
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    }, {
+      "name" : "I modify the group by index: 60",
+      "time" : {
+        "start" : 1590578783938,
+        "stop" : 1590578785877,
+        "duration" : 1939
+      },
+      "status" : "passed",
+      "steps" : [ {
+        "name" : "I select a group by index: \"60\"",
+        "time" : {
+          "start" : 1590578783962,
+          "stop" : 1590578785291,
+          "duration" : 1329
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "index",
+          "value" : "60"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      }, {
+        "name" : "I enter the value for a group: \"386:None:New header:None\"",
+        "time" : {
+          "start" : 1590578785388,
+          "stop" : 1590578785675,
+          "duration" : 287
+        },
+        "status" : "passed",
+        "steps" : [ ],
+        "attachments" : [ ],
+        "parameters" : [ {
+          "name" : "group",
+          "value" : "386:None:New header:None"
+        } ],
+        "stepsCount" : 0,
+        "attachmentsCount" : 0,
+        "shouldDisplayMessage" : false,
+        "hasContent" : true
+      } ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "group",
+        "value" : "386:None:New header:None"
+      }, {
+        "name" : "index",
+        "value" : "60"
+      } ],
+      "stepsCount" : 2,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I calculate the group count",
+      "time" : {
+        "start" : 1590578785878,
+        "stop" : 1590578787310,
+        "duration" : 1432
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : false
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 5,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1590578792428,
+      "stop" : 1590578793037,
+      "duration" : 609
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_modify_group"
+  }, {
+    "name" : "host",
+    "value" : "osido.local"
+  }, {
+    "name" : "thread",
+    "value" : "61794-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_modify_group"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : false,
+  "retry" : false,
+  "extra" : {
+    "severity" : "normal",
+    "retries" : [ ],
+    "categories" : [ {
+      "name" : "Product defects",
+      "matchedStatuses" : [ ],
+      "flaky" : false
+    } ],
+    "tags" : [ ]
+  },
+  "source" : "6553fd92fffdf0d2.json",
+  "parameterValues" : [ ]
+}

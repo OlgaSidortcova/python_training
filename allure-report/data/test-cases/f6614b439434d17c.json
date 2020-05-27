@@ -1,0 +1,302 @@
+{
+  "uid" : "f6614b439434d17c",
+  "name" : "test_phones_on_contact_view_page",
+  "fullName" : "tests.test_accordance_all_contacts_db#test_phones_on_contact_view_page",
+  "historyId" : "9a9453cd86317b929d1e3c76573d422e",
+  "time" : {
+    "start" : 1590578551297,
+    "stop" : 1590578552339,
+    "duration" : 1042
+  },
+  "status" : "failed",
+  "statusMessage" : "AssertionError: assert '7\\nmobilepho...e333\\n+065$%$' == '7\\nmobilepho...333\\n00065$%$'\n    7\n    mobilephone333\n    workphone333\n  - 00065$%$\n  ? ^^\n  + +065$%$\n  ? ^",
+  "statusTrace" : "app = <fixture.application.Application object at 0x1081ccda0>\ndb = <fixture.db.DbFixture object at 0x10817d4a8>\n\n    def test_phones_on_contact_view_page(app, db):\n        if len(db.get_contact_list()) == 0:\n            app.contact.create(Contact(lastname=\"test\", firstname=\"first name333\", home_phone=\"1-23\",\n                         work_phone=\"+777\", email=\"fd@f.j\", email2=\"b-d353f@b.fd\", email3=\"b_d-f@b.rt\"))\n        contacts = db.get_contact_list()\n        for contact_from_db in contacts:\n            id = contact_from_db.id\n            contact_from_home_page = app.contact.get_some_by_id(id)\n            assert contact_from_db == contact_from_home_page\n            assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(\n                contact_from_db)\n>           assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_db)\nE           AssertionError: assert '7\\nmobilepho...e333\\n+065$%$' == '7\\nmobilepho...333\\n00065$%$'\nE               7\nE               mobilephone333\nE               workphone333\nE             - 00065$%$\nE             ? ^^\nE             + +065$%$\nE             ? ^\n\ntests/test_accordance_all_contacts_db.py:17: AssertionError",
+  "flaky" : false,
+  "newFailed" : false,
+  "beforeStages" : [ {
+    "name" : "app",
+    "time" : {
+      "start" : 1590578535649,
+      "stop" : 1590578551294,
+      "duration" : 15645
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "stop",
+    "time" : {
+      "start" : 1590578535586,
+      "stop" : 1590578535586,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "db",
+    "time" : {
+      "start" : 1590578535586,
+      "stop" : 1590578535649,
+      "duration" : 63
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "testStage" : {
+    "status" : "failed",
+    "statusMessage" : "AssertionError: assert '7\\nmobilepho...e333\\n+065$%$' == '7\\nmobilepho...333\\n00065$%$'\n    7\n    mobilephone333\n    workphone333\n  - 00065$%$\n  ? ^^\n  + +065$%$\n  ? ^",
+    "statusTrace" : "app = <fixture.application.Application object at 0x1081ccda0>\ndb = <fixture.db.DbFixture object at 0x10817d4a8>\n\n    def test_phones_on_contact_view_page(app, db):\n        if len(db.get_contact_list()) == 0:\n            app.contact.create(Contact(lastname=\"test\", firstname=\"first name333\", home_phone=\"1-23\",\n                         work_phone=\"+777\", email=\"fd@f.j\", email2=\"b-d353f@b.fd\", email3=\"b_d-f@b.rt\"))\n        contacts = db.get_contact_list()\n        for contact_from_db in contacts:\n            id = contact_from_db.id\n            contact_from_home_page = app.contact.get_some_by_id(id)\n            assert contact_from_db == contact_from_home_page\n            assert contact_from_home_page.all_emails_from_home_page == merge_emails_like_on_home_page(\n                contact_from_db)\n>           assert contact_from_home_page.all_phone_from_home_page == merge_phones_like_on_home_page(contact_from_db)\nE           AssertionError: assert '7\\nmobilepho...e333\\n+065$%$' == '7\\nmobilepho...333\\n00065$%$'\nE               7\nE               mobilephone333\nE               workphone333\nE             - 00065$%$\nE             ? ^^\nE             + +065$%$\nE             ? ^\n\ntests/test_accordance_all_contacts_db.py:17: AssertionError",
+    "steps" : [ {
+      "name" : "I get a contact with id: \"'440'\"",
+      "time" : {
+        "start" : 1590578551317,
+        "stop" : 1590578551754,
+        "duration" : 437
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'440'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'441'\"",
+      "time" : {
+        "start" : 1590578551755,
+        "stop" : 1590578551834,
+        "duration" : 79
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'441'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'444'\"",
+      "time" : {
+        "start" : 1590578551834,
+        "stop" : 1590578551901,
+        "duration" : 67
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'444'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'447'\"",
+      "time" : {
+        "start" : 1590578551901,
+        "stop" : 1590578551957,
+        "duration" : 56
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'447'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'448'\"",
+      "time" : {
+        "start" : 1590578551957,
+        "stop" : 1590578552019,
+        "duration" : 62
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'448'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'450'\"",
+      "time" : {
+        "start" : 1590578552019,
+        "stop" : 1590578552087,
+        "duration" : 68
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'450'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'451'\"",
+      "time" : {
+        "start" : 1590578552087,
+        "stop" : 1590578552159,
+        "duration" : 72
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'451'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'452'\"",
+      "time" : {
+        "start" : 1590578552160,
+        "stop" : 1590578552244,
+        "duration" : 84
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'452'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    }, {
+      "name" : "I get a contact with id: \"'453'\"",
+      "time" : {
+        "start" : 1590578552244,
+        "stop" : 1590578552321,
+        "duration" : 77
+      },
+      "status" : "passed",
+      "steps" : [ ],
+      "attachments" : [ ],
+      "parameters" : [ {
+        "name" : "id",
+        "value" : "'453'"
+      } ],
+      "stepsCount" : 0,
+      "attachmentsCount" : 0,
+      "shouldDisplayMessage" : false,
+      "hasContent" : true
+    } ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 9,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : true,
+    "hasContent" : true
+  },
+  "afterStages" : [ {
+    "name" : "stop::fin",
+    "time" : {
+      "start" : 1590578792428,
+      "stop" : 1590578793037,
+      "duration" : 609
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  }, {
+    "name" : "db::fin",
+    "time" : {
+      "start" : 1590578793038,
+      "stop" : 1590578793038,
+      "duration" : 0
+    },
+    "status" : "passed",
+    "steps" : [ ],
+    "attachments" : [ ],
+    "parameters" : [ ],
+    "stepsCount" : 0,
+    "attachmentsCount" : 0,
+    "shouldDisplayMessage" : false,
+    "hasContent" : false
+  } ],
+  "labels" : [ {
+    "name" : "parentSuite",
+    "value" : "tests"
+  }, {
+    "name" : "suite",
+    "value" : "test_accordance_all_contacts_db"
+  }, {
+    "name" : "host",
+    "value" : "osido.local"
+  }, {
+    "name" : "thread",
+    "value" : "61794-MainThread"
+  }, {
+    "name" : "framework",
+    "value" : "pytest"
+  }, {
+    "name" : "language",
+    "value" : "cpython3"
+  }, {
+    "name" : "package",
+    "value" : "tests.test_accordance_all_contacts_db"
+  }, {
+    "name" : "resultFormat",
+    "value" : "allure2"
+  } ],
+  "parameters" : [ ],
+  "links" : [ ],
+  "hidden" : true,
+  "retry" : true,
+  "extra" : {
+    "categories" : [ ],
+    "tags" : [ ]
+  },
+  "source" : "f6614b439434d17c.json",
+  "parameterValues" : [ ]
+}

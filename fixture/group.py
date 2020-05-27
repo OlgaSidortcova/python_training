@@ -1,5 +1,5 @@
 from model.group import Group
-
+import allure
 
 class GroupHelper:
     def __init__(self, app):
@@ -10,6 +10,7 @@ class GroupHelper:
         if not (wd.current_url.endswith("/group.php") and len(wd.find_elements_by_name("new")) > 0):
             wd.find_element_by_link_text("groups").click()
 
+    @allure.step('I add a group: "{group}" to the list')
     def create(self, group):
         wd = self.app.wd
         self.open_groups_page()
@@ -26,6 +27,7 @@ class GroupHelper:
         wd = self.app.wd
         wd.find_element_by_link_text("group page").click()
 
+    @allure.step('I delete a group by id: "{id}" to the list')
     def delete_group_by_id(self, id):
         wd = self.app.wd
         self.open_groups_page()
@@ -36,8 +38,7 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None
 
-
-
+    @allure.step('I delete a group by index: "{index}" to the list')
     def delete_group_by_index(self, index):
         wd = self.app.wd
         self.open_groups_page()
@@ -48,6 +49,7 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None
 
+    @allure.step('I delete the first group')
     def delete_first(self):
         self.delete_group_by_index(0)
         #wd = self.app.wd
@@ -59,21 +61,26 @@ class GroupHelper:
         #self.return_to_group_page()
         #self.group_cache = None
 
+    @allure.step('I select a group by index: "{index}"')
     def select_group_by_index(self, index):
         wd = self.app.wd
         wd.find_elements_by_name("selected[]")[index].click()
 
+    @allure.step('I select a group by id: "{id}"')
     def select_group_by_id(self, id):
         wd = self.app.wd
         wd.find_element_by_css_selector("input[value='%s']" % id).click()
 
+    @allure.step('I select the first group')
     def select_first_group(self):
         wd = self.app.wd
         wd.find_element_by_name("selected[]").click()
 
+    @allure.step('I modify the first group')
     def modify_first(self, group):
         self.modify_group_by_index(group, 0)
 
+    @allure.step('I modify the group by index: {index}')
     def modify_group_by_index(self, group, index):
         wd = self.app.wd
         self.open_groups_page()
@@ -86,6 +93,7 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None
 
+    @allure.step('I modify a group: "{group}" with id: {id}')
     def modify_group_by_id(self, group, id):
         wd = self.app.wd
         self.open_groups_page()
@@ -98,6 +106,7 @@ class GroupHelper:
         self.return_to_group_page()
         self.group_cache = None
 
+    @allure.step('I enter the value for a group: "{group}"')
     def enter_value(self, group):
         self.change_field_value("group_name", group.name)
         self.change_field_value("group_header", group.header)
@@ -110,6 +119,7 @@ class GroupHelper:
             wd.find_element_by_name(field_name).clear()
             wd.find_element_by_name(field_name).send_keys(text)
 
+    @allure.step('I calculate the group count')
     def count(self):
         wd = self.app.wd
         self.open_groups_page()

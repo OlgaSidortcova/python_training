@@ -1,7 +1,7 @@
 import mysql.connector
 from model.group import Group
 from model.contact import Contact
-
+import allure
 
 class DbFixture:
     def __init__(self, host, name, user, password):
@@ -14,6 +14,7 @@ class DbFixture:
     def destroy(self):
         self.connection.close()
 
+    @allure.step('Given a group list')
     def get_group_list(self):
         list = []
         cursor = self.connection.cursor()
