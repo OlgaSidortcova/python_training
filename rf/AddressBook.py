@@ -8,9 +8,9 @@ from model.group import Group
 
 class AddressBook:
 
-    ROBOT_LIBRARY_SCOPE = 'SUITE'
+    ROBOT_LIBRARY_SCOPE = 'TEST SUITE'
 
-    def __init__(self, config="target.json", browser="chrome"):
+    def __init__(self, config="target.json", browser="firefox"):
         self.browser = browser
         config_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", config)
         with open(config_file) as f:
@@ -28,5 +28,17 @@ class AddressBook:
         self.dbfixture.destroy()
         self.fixture.destroy()
 
-    def create_group(self):
-        self.fixture.group.create(Group(name="123", header="123", footer="123"))
+    def get_group_list(self):
+        return self.dbfixture.get_group_list()
+
+    def new_group(self, name, header, footer):
+        return Group(name=name, header=header, footer=footer)
+
+    def create_group(self, group):
+        self.fixture.group.create(group)
+
+    def group_list_should_be_equal(self, old_list, new_list):
+        assert sorted(old_list, key=Group.id_or_max) == sorted(new_list, key=Group.id_or_max)
+
+    def delete_group(self, group):
+        self.fixture.group.delete_group_by_id(group.id)
